@@ -2,6 +2,8 @@
 import json
 import time
 
+import requests
+
 
 def save_cookies(driver):
     # 保存cookie信息到本地文件
@@ -37,3 +39,25 @@ def is_login(driver):
         driver.maximize_window()
         time.sleep(3)
         return True
+
+
+def get_verify(driver):
+    url = 'http://upload.chaojiying.net/Upload/Processing.php'
+    data = {
+        "user": "baili123",
+        # 密码：pass原生密码，pass2（md5加密）
+        "pass2": "02BB7F3BBBAC170A2D836517AD9CC8DA",
+        "sofid": "958623", # 软件ID
+        "codetype": 1902
+    }
+    files = {"userfile": open("verify.png", "rb")}
+    resp = requests.post(url=url, data=data, files=files)
+    res = resp.json()
+    code = ""
+    if res["err_no"] == 0:
+        code = res["pic_str"]
+        print(f"识别成功{code}")
+        return code
+    else:
+        print("识别失败")
+        return code

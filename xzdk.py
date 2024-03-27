@@ -41,8 +41,11 @@ driver.find_element(By.XPATH, '/html/body/div[2]/form/table[1]/tbody/tr[3]/td[2]
 # 贷款名称
 driver.find_element(By.XPATH, '/html/body/div[2]/form/table[1]/tbody/tr[4]/td[2]/input').send_keys('华龙苑南里')
 driver.find_element(By.XPATH, '/html/body/div[2]/form/table[1]/tbody/tr[5]/td[2]/input').send_keys('华南里')
-driver.find_element(By.XPATH, '/html/body/div[2]/form/table[1]/tbody/tr[6]/td[2]/input[1]').send_keys('会员名')
+# 出现会员名
+driver.find_element(By.XPATH, '/html/body/div[2]/form/table[1]/tbody/tr[6]/td[2]/input[1]').send_keys('beifan')
 time.sleep(2)
+# 选中会员名
+driver.find_element(By.XPATH, '//strong[text()="beifan"]').click()
 # 复选框
 driver.find_element(By.XPATH, '//*[@id="citys_box"]/div[1]/div[2]/input[1]').click()
 driver.find_element(By.XPATH, '//*[@id="citys_box"]/div[1]/div[2]/input[3]').click()
@@ -59,8 +62,15 @@ select.select_by_value('2031')
 # 担保范围
 select = Select(driver.find_element(By.XPATH, '/html/body/div[2]/form/table[1]/tbody/tr[10]/td[2]/select'))
 time.sleep(2)
-select.select_by_visible_text('无')
-
+select.select_by_visible_text('本金')
+time.sleep(2)
+driver.find_element(By.XPATH, '//*[@id="guarantor_margin_amt_box"]/td[2]/input').clear()
+driver.find_element(By.XPATH, '//*[@id="guarantor_margin_amt_box"]/td[2]/input').send_keys('100000')
+driver.find_element(By.XPATH, '//*[@id="guarantor_amt_box"]/td[2]/input').clear()
+driver.find_element(By.XPATH, '//*[@id="guarantor_amt_box"]/td[2]/input').send_keys('200000')
+driver.find_element(By.XPATH, '//*[@id="guarantor_pro_fit_amt_box"]/td[2]/input').clear()
+driver.find_element(By.XPATH, '//*[@id="guarantor_pro_fit_amt_box"]/td[2]/input').send_keys('300000')
+time.sleep(2)
 # 借款用途
 select = Select(driver.find_element(By.XPATH, '/html/body/div[2]/form/table[1]/tbody/tr[15]/td[2]/select'))
 time.sleep(2)
@@ -69,13 +79,14 @@ select.select_by_visible_text('婚礼筹备')
 # 文件上传
 driver.find_element(By.XPATH, '/html/body/div[2]/form/table[1]/tbody/tr[14]/td[2]/span/div[1]/div/div/button').click()
 time.sleep(2)
-driver.find_element(By.XPATH, '/html/body/div[5]/div[1]/div[2]/div/div[1]/ul/li[2]').click()
+driver.find_element(By.XPATH, '//li[text()="本地上传"]').click()
 time.sleep(3)
 driver.find_element(By.XPATH, '//input[@type="file"]').send_keys(r'D:\桌面\7月找工作\09-web自动化实战\test1\verify.png')
-driver.find_element(By.XPATH, '/html/body/div[5]/div[1]/div[3]/span[1]/input').click()
+time.sleep(3)
+driver.find_element(By.XPATH, '//div[@class="ke-dialog-footer"]//*[@value="确定"]').click()
 
 
-time.sleep(5)
+time.sleep(3)
 # 退出子页面
 driver.switch_to.default_content()
 
