@@ -15,14 +15,15 @@ def save_cookies(driver):
         f.write(json.dumps(cookies))  # json字符串转json类型
 
 
-def load_cookies(driver):
-    driver.get('http://47.107.116.139/fangwei/m.php?m=Public&a=login&')
+def load_cookies(driver, url):
+    driver.get(url)
     try:
         with open("cookies.json") as f:
             cookies = json.loads(f.read())
         for cookie in cookies:
             driver.add_cookie(cookie)
         else:
+            driver.maximize_window()
             driver.refresh()
     except:
         print("目前没有登录信息")

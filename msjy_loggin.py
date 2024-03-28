@@ -1,24 +1,18 @@
-import json
-
-import requests
 from selenium import webdriver
 import time
 from selenium.webdriver.common.by import By
-
 from utils import load_cookies, save_cookies, is_login, get_verify
 
 driver = webdriver.Chrome()
-
-load_cookies(driver)
+url = "http://47.107.116.139/fangwei/m.php?m=Public&a=login"
+load_cookies(driver, url)
 driver.refresh()
 # # 保持设置cookie, 保持登录状态
 # driver.add_cookie({"name": "PHPSESSID",
 #                    "value": "qirvj2bvv06m8lvrptqi7jtmk2"})
 #
 
-
 if is_login(driver) is False:
-    url = "http://47.107.116.139/fangwei/m.php?m=Public&a=login"
     driver.get(url)
     driver.maximize_window()
     # load_cookies(driver)
@@ -48,9 +42,11 @@ if is_login(driver) is False:
     code = get_verify(driver)
     if code:
         driver.find_element(By.XPATH, '/html/body/form/table/tbody/tr/td[3]/table/tbody/tr[5]/td[2]/input').send_keys(code)
+    else:
+        print("验证码错误")
+        driver.quit()
     driver.find_element(By.XPATH, '//*[@id="login_btn"]').click()
 
     save_cookies(driver)
-
     time.sleep(5)
-    driver.quit()
+    # driver.quit()
