@@ -4,7 +4,7 @@ import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
-from msjy_loggin import driver
+from script.msjy_loggin import driver
 
 # 进入贷款管理页面
 frame = driver.find_element(By.XPATH, '/html/frameset/frame[1]')

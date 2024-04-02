@@ -1,7 +1,7 @@
 from selenium import webdriver
 import time
 from selenium.webdriver.common.by import By
-from utils import load_cookies, save_cookies, is_login, get_verify
+from commons.utils import load_cookies, save_cookies, is_login, get_verify
 
 driver = webdriver.Chrome()
 url = "http://47.107.116.139/fangwei/m.php?m=Public&a=login"

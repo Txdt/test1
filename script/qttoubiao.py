@@ -1,7 +1,6 @@
 import time
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
-from utils import is_login, save_cookies, load_cookies
 
 # 实例化一个驱动
 driver = Chrome()
